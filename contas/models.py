@@ -29,9 +29,11 @@ class Evento(models.Model):
     data_final = models.DateField()
     professorID = models.ForeignKey('Professor', on_delete=models.CASCADE)
     tipoId = models.ForeignKey("TipoDeHora", on_delete=models.CASCADE)
-
+    imagem = models.ImageField(upload_to='fotos/', null=True, blank=True, default=None)
+    horaInicio = models.TimeField(default=None)
+    horaFim = models.TimeField(default=None)
     def __str__(self):
-        return self.nome
+            return self.nome
 
 
 class Professor(models.Model):
@@ -40,6 +42,7 @@ class Professor(models.Model):
     nome = models.CharField(max_length=255)
     senha = models.CharField(max_length=255)
     curso_id = models.ForeignKey('Curso', on_delete=models.CASCADE)
+
 
     def __str__(self):
         return self.nome
