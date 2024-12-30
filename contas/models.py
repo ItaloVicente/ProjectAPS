@@ -15,6 +15,7 @@ class Aluno(models.Model):
     senha = models.CharField(max_length=255)  # Senha com limite de 255 caracteres
     email = models.EmailField(unique=True)  # Email único
     curso_id = models.ForeignKey('Curso', on_delete=models.CASCADE)  # Chave estrangeira para Curso
+    imagem_aluno = models.ImageField(upload_to='perfil_aluno/', null=True, blank=True, default=None)
 
     def __str__(self):
         return self.nome
@@ -42,6 +43,7 @@ class Professor(models.Model):
     nome = models.CharField(max_length=255)
     senha = models.CharField(max_length=255)
     curso_id = models.ForeignKey('Curso', on_delete=models.CASCADE)
+    imagem_professor = models.ImageField(upload_to='perfil_professor/', null=True, blank=True, default=None)
 
 
     def __str__(self):
@@ -72,7 +74,7 @@ class Inscricao(models.Model):
     alunoId = models.ForeignKey('Aluno', on_delete=models.CASCADE)
     eventoId = models.ForeignKey('Evento', on_delete=models.CASCADE)
     #Validar com o pessoal
-    qr_code = models.CharField(max_length=511, blank=True, null=True)
+    qr_code = models.ImageField(upload_to='qr_code/', null=True, blank=True, default=None)
 
 
 class Presenca(models.Model):
@@ -88,7 +90,7 @@ class Coordenador(models.Model):
     nome = models.CharField(max_length=255)
     senha = models.CharField(max_length=255)
     cursoId = models.ForeignKey('Curso', on_delete=models.CASCADE)
-
+    imagem_coordenador = models.ImageField(upload_to='perfil_coordenador/', null=True, blank=True, default=None)
     def __str__(self):
         return self.nome
 
